@@ -1,0 +1,37 @@
+---
+# this file is *not* meant to cover or endorse the use of GitHub Actions, but
+# rather to help make automated releases for this project based on a changelog
+# generated from snippets
+
+name: Create release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # all history is needed to crawl it properly
+          fetch-depth: 0
+      - name: Create changelog
+        uses: brainelectronics/changelog-from-snippets@main
+        with:
+          update-in-place: true
+      - name: Publish Release
+        uses: brainelectronics/changelog-based-release@v1
+        with:
+          tag-name-prefix: 'v'
+          tag-name-extension: ''
+          release-name-prefix: 'v'
+          release-name-extension: ''
+          draft-release: true

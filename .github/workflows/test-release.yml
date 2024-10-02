@@ -1,0 +1,49 @@
+---
+# this file is *not* meant to cover or endorse the use of GitHub Actions, but
+# rather to help make automated releases for this project based on a changelog
+# generated from snippets
+
+name: Test changelog generation
+
+on: [pull_request]
+
+jobs:
+  draft_release:
+    runs-on: ubuntu-latest
+    name: Create changelog
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # all history is needed to crawl it properly
+          fetch-depth: 0
+      - name: Test action with default inputs
+        uses: brainelectronics/changelog-from-snippets@feature/initial-version
+      - name: Report action output
+        run: |
+          ls
+          echo "cat changelog.md"
+          cat changelog.md
+          if [[ -f changelog.md.new ]]; then
+            echo "cat changelog.md.new"
+            cat changelog.md.new
+            rm changelog.md.new
+          fi
+      - name: Test action with custom inputs
+        id: foo
+        uses: brainelectronics/changelog-from-snippets@feature/initial-version
+        with:
+          changelog-path: 'changelog.md'
+          snippets-path: '.snippets'
+          update-in-place: true
+      - name: Report action output
+        run: |
+          ls
+          echo "cat changelog.md"
+          cat changelog.md
+          if [[ -f changelog.md.new ]]; then
+            # with update-in-place this should never run
+            echo "cat changelog.md.new"
+            cat changelog.md.new
+            rm changelog.md.new
+          fi
