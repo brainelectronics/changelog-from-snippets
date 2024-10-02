@@ -1,6 +1,7 @@
 ---
-# this file is *not* meant to cover or endorse the use of GitHub Actions, but rather to
-# help make automated releases for this project
+# this file is *not* meant to cover or endorse the use of GitHub Actions, but
+# rather to help make automated releases for this project based on a changelog
+# generated from snippets
 
 name: Test changelog generation
 
