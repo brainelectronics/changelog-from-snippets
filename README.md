@@ -53,9 +53,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # all history is needed to crawl it properly
+          fetch-depth: 0
       - name: 'Create changelog based on snippets'
         uses: brainelectronics/changelog-from-snippets@v1
 ```
+
+**Ensure the `fetch-depth` option value is set to `0` during the checkout**
 
 ### Customizing
 
