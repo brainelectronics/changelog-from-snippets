@@ -18,7 +18,7 @@ jobs:
           # all history is needed to crawl it properly
           fetch-depth: 0
       - name: Test action with default inputs
-        uses: brainelectronics/changelog-from-snippets@feature/initial-version
+        uses: brainelectronics/changelog-from-snippets@main
       - name: Report action output
         run: |
           ls
@@ -31,7 +31,7 @@ jobs:
           fi
       - name: Test action with custom inputs
         id: foo
-        uses: brainelectronics/changelog-from-snippets@feature/initial-version
+        uses: brainelectronics/changelog-from-snippets@main
         with:
           changelog-path: 'changelog.md'
           snippets-path: '.snippets'

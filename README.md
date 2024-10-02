@@ -75,7 +75,7 @@ The following are optional as `step.with` keys
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
   - name: 'Create changelog based on snippets'
     uses: brainelectronics/changelog-from-snippets@v1
     with:
