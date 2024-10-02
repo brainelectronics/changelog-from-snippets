@@ -1,0 +1,47 @@
+---
+name: 'Create changelog based on snippets'
+author: 'brainelectronics'
+description: 'snippets2changelog based changelog creation action'
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  changelog-path:
+    description: 'Path to (existing) changelog'
+    required: false
+    default: 'changelog.md'
+  snippets-path:
+    description: 'Path to folder with snippets'
+    required: false
+    default: '.snippets'
+  update-in-place:
+    description: 'Update changelog in place'
+    required: false
+    default: false
+    type: boolean
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install required packages
+      run: pip install -r requirements.txt
+      shell: bash
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - name: Print snippets2changelog version
+      run: changelog-generator info
+      shell: bash
+    - name: Generate changelog
+      id: generate-changelog
+      run: |
+        UPDATE_IN_PLACE=""
+        if [[ "${{ inputs.update-in-place }}" == "true" ]]; then
+          UPDATE_IN_PLACE="--in-place"
+        fi
+        changelog-generator changelog ${{ inputs.changelog-path }} --snippets=${{ inputs.snippets-path }} ${UPDATE_IN_PLACE}
+      shell: bash
