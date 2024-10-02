@@ -30,7 +30,7 @@ changelog format have to meet certain criterias.
 
 With the default values used a changelog named `changelog.md` file located in
 the project root will be parsed and the new changelog will be created as
-`changelog.md.new` at the same leven. For further details check the
+`changelog.md.new` at the same location. For further details check the
 [customizing section](#customizing)
 
 See [action.yml](action.yml)

@@ -21,9 +21,12 @@ jobs:
       - name: Report action output
         run: |
           ls
+          echo "cat changelog.md"
           cat changelog.md
           if [[ -f changelog.md.new ]]; then
+            echo "cat changelog.md.new"
             cat changelog.md.new
+            rm changelog.md.new
           fi
       - name: Test action with custom inputs
         id: foo
@@ -35,7 +38,11 @@ jobs:
       - name: Report action output
         run: |
           ls
+          echo "cat changelog.md"
           cat changelog.md
           if [[ -f changelog.md.new ]]; then
+            # with update-in-place this should never run
+            echo "cat changelog.md.new"
             cat changelog.md.new
+            rm changelog.md.new
           fi
