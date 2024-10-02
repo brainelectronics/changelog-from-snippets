@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Test action with default inputs
-        uses: brainelectronics/changelog-from-snippets@$GITHUB_HEAD_REF
+        uses: brainelectronics/changelog-from-snippets@${{ github.head_ref }}
       - name: Report action output
         run: |
           ls
@@ -24,7 +24,7 @@ jobs:
           fi
       - name: Test action with custom inputs
         id: foo
-        uses: brainelectronics/changelog-from-snippets@$GITHUB_HEAD_REF
+        uses: brainelectronics/changelog-from-snippets@${{ github.head_ref }}
         with:
           changelog-path: 'changelog.md'
           snippets-path: '.snippets'
