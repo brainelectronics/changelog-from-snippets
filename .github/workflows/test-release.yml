@@ -36,6 +36,7 @@ jobs:
           changelog-path: 'changelog.md'
           snippets-path: '.snippets'
           update-in-place: true
+          skip-internal: true
       - name: Report action output
         run: |
           ls

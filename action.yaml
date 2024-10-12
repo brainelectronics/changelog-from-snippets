@@ -20,6 +20,11 @@ inputs:
     required: false
     default: false
     type: boolean
+  skip-internal:
+    description: 'Skip snippets with scope internal'
+    required: false
+    default: false
+    type: boolean
 
 runs:
   using: "composite"
@@ -40,8 +45,12 @@ runs:
       id: generate-changelog
       run: |
         UPDATE_IN_PLACE=""
+        SKIP_INTERNAL_SNIPPETS=""
         if [[ "${{ inputs.update-in-place }}" == "true" ]]; then
           UPDATE_IN_PLACE="--in-place"
         fi
-        changelog-generator changelog ${{ inputs.changelog-path }} --snippets=${{ inputs.snippets-path }} ${UPDATE_IN_PLACE}
+        if [[ "${{ inputs.skip-internal }}" == "true" ]]; then
+          SKIP_INTERNAL_SNIPPETS="--no-internal"
+        fi
+        changelog-generator changelog ${{ inputs.changelog-path }} --snippets=${{ inputs.snippets-path }} ${UPDATE_IN_PLACE} ${SKIP_INTERNAL_SNIPPETS}
       shell: bash
