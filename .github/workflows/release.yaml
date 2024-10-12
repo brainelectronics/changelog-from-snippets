@@ -27,6 +27,7 @@ jobs:
         uses: brainelectronics/changelog-from-snippets@main
         with:
           update-in-place: true
+          skip-internal: true
       - name: Publish Release
         uses: brainelectronics/changelog-based-release@v1
         with:
