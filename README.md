@@ -66,11 +66,12 @@ jobs:
 
 The following are optional as `step.with` keys
 
-| Name                      | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `changelog-path`          | String  | Path to (existing) changelog. Default to `changelog.md`                                                                                                                                                       |
-| `snippets-path`           | String  | Path to folder with snippets. Default to `.snippets`                                                                                                                                                       |
-| `update-in-place`         | Boolean | Update changelog in place. Defaults to `false`                                                                                                                                                      |
+| Name                      | Type    | Description                                              |
+| ------------------------- | ------- | ---------------------------------------------------------|
+| `changelog-path`          | String  | Path to (existing) changelog. Default to `changelog.md`  |
+| `snippets-path`           | String  | Path to folder with snippets. Default to `.snippets`     |
+| `update-in-place`         | Boolean | Update changelog in place. Defaults to `false`           |
+| `skip-internal`           | Boolean | Skip snippets with scope `internal`. Defaults to `false` |
 
 ```yaml
 steps:
@@ -82,6 +83,7 @@ steps:
       changelog-path: path/to/changelog.md
       changelog-path: path/to/snippets/
       update-in-place: true
+      skip-internal: true
 ```
 
 ## License
